@@ -2,32 +2,21 @@ server:
   port: 8081
   error:
     include-message: always
-
+#Configuracion de spring
 spring:
+  #Configuracion de migracion
   flyway:
     enabled: true
     baselineVersion: 1
-    locations: classpath:db/migration
+    locations:
+      classpath: db/migration
     sqlMigrationSuffixes: .sql
     baselineOnMigrate: true
     sqlMigrationPrefix: V
     schemas: public
 
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:postgresql://a.oregon-postgres.render.com:5432/crm_db_piensa?socketTimeout=3
+    username: crm_db_piensa_user
+    password: 4AH7FahspBjAIWUsobjhHEueT6vW2dXN
     driverClassName: org.postgresql.Driver
-
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: validate
-
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-
